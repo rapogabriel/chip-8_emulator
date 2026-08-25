@@ -42,8 +42,6 @@ Para compilar e executar localmente sem contêineres, certifique-se de ter essas
 
 ## 🚀 Compilação e Execução
 
-O fluxo de trabalho foi abstraído pelo `justfile`. 
-
 > ⚠️ Ao alternar entre a compilação local e a compilação via Docker, lembre-se de rodar o comando de limpeza (`just clean` localmente ou apagando a pasta `build`). Isso evita que caminhos absolutos no cache do CMake gerem falhas de compilação.
 
 ### Executando via Docker
