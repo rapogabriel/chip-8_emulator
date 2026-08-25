@@ -28,7 +28,7 @@ Você pode executar este projeto utilizando **Docker** (para evitar configurar o
 ### Opção A: Usando Docker (Recomendado)
 Para rodar de forma isolada, você precisará de:
 *   **Docker** (No Windows, requer Docker Desktop configurado para usar a engine do WSL2 para suporte ao WSLg).
-*   *(Opcional, mas recomendado)* **Just**: Instalado na sua máquina host apenas para encurtar os comandos de orquestração do Docker.
+*   **Just**: Instalado na sua máquina apenas para encurtar os comandos do Docker.
 
 ### Opção B: Instalação Local
 O projeto utilizou das seguintes ferramentas:
@@ -37,7 +37,6 @@ O projeto utilizou das seguintes ferramentas:
 *   **CMake:** 4.4.2
 *   **Ninja:** 1.13.2
 *   **Just:** 1.58.0
-*   **SDL3:** (Para renderização da interface gráfica)
 
 Para compilar e executar localmente sem contêineres, certifique-se de ter essas ferramentas no seu sistema.
 
@@ -49,13 +48,13 @@ O fluxo de trabalho foi abstraído pelo `justfile`.
 
 ### Executando via Docker
 
-O processo de build ocorre através de *volumes*. Isso garante que as alterações que você faz no código sejam refletidas na hora pelo contêiner, sem lentidão ou necessidade de reconstruir a imagem a cada modificação.
+O processo de build ocorre por partes. Isso garante que as alterações que você faz no código sejam refletidas na hora pelo contêiner, sem lentidão ou necessidade de reconstruir a imagem a cada modificação.
 
 **Se você possui o `just` instalado na sua máquina**, utilize os atalhos:
 *   **`just docker-build`**: Constrói a imagem Docker local contendo todo o toolchain (execute apenas uma vez).
 *   **`just docker-run`**: Sobe o contêiner, compila o código e abre a janela do emulador compartilhando o display nativo (suporta X11 no Linux e WSLg no Windows).
 
-**Se você possui APENAS o Docker instalado**, utilize os comandos crus abaixo (o `just` rodará internamente dentro do contêiner):
+**Se você possui APENAS o Docker instalado**, utilize os comandos abaixo:
 
 1. Construa a imagem (apenas na primeira vez):
 ```bash
@@ -81,9 +80,7 @@ docker build -t chip8-emu .
 
 ## 🗺️ Próximos Passos (Roadmap)
 
-Como o projeto está no início, o desenvolvimento seguirá uma abordagem orientada à experiência visual e interativa. As próximas etapas envolverão:
-
-- [ ] **Interface Gráfica Base (SDL3):** O desenvolvimento da UI será a prioridade inicial, antes da implementação da lógica do emulador em si. Isso incluirá a janela base, botões para carregar a ROM e opções para fechar o programa, criando uma "carcaça" funcional para o emulador.
+- [ ] **Interface Gráfica Base (SDL3):** O desenvolvimento da UI será a prioridade inicial, antes da implementação da lógica do emulador em si. Isso incluirá a janela base, botões para carregar a ROM e opções para fechar o programa, criando uma carcaça funcional para o emulador.
 - [ ] Implementação da CPU e do ciclo de *Fetch-Decode-Execute*.
 - [ ] Mapeamento da memória e configuração dos registradores.
 - [ ] Integração do backend do emulador com a interface SDL3 para renderização do display do CHIP-8 e captura de inputs.
