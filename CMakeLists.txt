@@ -12,11 +12,28 @@ set(EXECUTAVEL chip8)
 set(FONTES
     main
     arg_parse
+    sdl_aux
 )
 
 # Define que a versão do C++ é obrigatória e desativa extensões específicas do compilador
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
+
+# Habilita o FetchContent
+include(FetchContent)
+
+set(SDL_STATIC ON CACHE BOOL "Força a compilação estática do SDL3" FORCE)
+set(SDL_SHARED OFF CACHE BOOL "Desliga a compilação dinâmica" FORCE)
+
+# Diz ao CMake onde buscar o SDL2
+FetchContent_Declare(
+    SDL3
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+    GIT_TAG release-3.4.12 # Use a tag da versão mais recente
+)
+
+# Baixa e deixa disponível
+FetchContent_MakeAvailable(SDL3)
 
 option(ENABLE_EMU_DEBUG "Ativa a flag DEBUG para logs" OFF)
 
@@ -35,6 +52,8 @@ add_executable(${EXECUTAVEL} ${FONTES})
 target_compile_options(${EXECUTAVEL} PRIVATE 
 -Wall -Wextra -Werror -Wpedantic -Wshadow 
 -Wconversion -Wsign-conversion)
+
+target_link_libraries(${EXECUTAVEL} PRIVATE SDL3::SDL3)
 
 if(ENABLE_EMU_DEBUG)
     # Equivalente a passar -DDEBUG (ativa o #ifdef DEBUG do seu log.h)
