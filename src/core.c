@@ -1,0 +1,33 @@
+
+
+#include "core.h"
+#include "log.h"
+#include "SDL3/SDL_error.h"
+#include "SDL3/SDL_init.h"
+#include "SDL3/SDL_render.h"
+#include "SDL3/SDL_video.h"
+#include <stdio.h>
+
+#define sucesso LOG("executado")
+
+bool appInit(App* app, const char* titulo, int largura, int altura){
+    if (!SDL_Init(SDL_INIT_VIDEO)) {
+        SDL_Log("Falha do SDL_Init: %s", SDL_GetError());
+        return false;
+    }
+    if(!SDL_CreateWindowAndRenderer(titulo, largura, altura,
+        SDL_WINDOW_BORDERLESS, &app->window, &app->render)){
+        printf("Falha na SDL_CreateWindowAndRenderer: %s", SDL_GetError());
+        SDL_Quit();
+        return false;
+    }
+    sucesso;
+    return true;
+}
+
+void appDestroy(App* app){
+    SDL_DestroyWindow(app->window);
+    SDL_DestroyRenderer(app->render);
+    SDL_Quit();
+    sucesso;
+}

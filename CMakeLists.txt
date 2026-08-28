@@ -11,8 +11,7 @@ set(SRC_DIR src/)
 set(EXECUTAVEL chip8)
 set(FONTES
     main
-    arg_parse
-    sdl_aux
+    core
 )
 
 # Define que a versão do C++ é obrigatória e desativa extensões específicas do compilador
