@@ -23,3 +23,5 @@
     #define LOG(fmt, ...) do {} while(0)
 
 #endif
+
+#define sucesso LOG("executado")

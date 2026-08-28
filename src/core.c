@@ -7,9 +7,8 @@
 #include "SDL3/SDL_init.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_video.h"
+#include "render.h"
 #include <stdio.h>
-
-#define sucesso LOG("executado")
 
 void trataEventos(App*);
 
@@ -24,6 +23,7 @@ bool appInit(App* app, const char* titulo, int largura, int altura){
         SDL_Quit();
         return false;
     }
+    if(!initBtns(app)) return false;
     app->aberta = true;
     sucesso;
     return true;
@@ -33,9 +33,7 @@ void appRun(App* app){
 
     while(app->aberta){
         trataEventos(app);
-        SDL_SetRenderDrawColor(app->render, 20, 20, 20, 255);
-        SDL_RenderClear(app->render);
-        SDL_RenderPresent(app->render);
+        drawRender(app);
     }
     sucesso;
 }
@@ -43,6 +41,7 @@ void appRun(App* app){
 void appDestroy(App* app){
     SDL_DestroyWindow(app->window);
     SDL_DestroyRenderer(app->render);
+    destroyBtns(app);
     SDL_Quit();
     sucesso;
 }
