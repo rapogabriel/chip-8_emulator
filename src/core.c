@@ -1,6 +1,7 @@
 
 
 #include "core.h"
+#include "SDL3/SDL_events.h"
 #include "log.h"
 #include "SDL3/SDL_error.h"
 #include "SDL3/SDL_init.h"
@@ -9,6 +10,8 @@
 #include <stdio.h>
 
 #define sucesso LOG("executado")
+
+void trataEventos(App*);
 
 bool appInit(App* app, const char* titulo, int largura, int altura){
     if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -21,8 +24,20 @@ bool appInit(App* app, const char* titulo, int largura, int altura){
         SDL_Quit();
         return false;
     }
+    app->aberta = true;
     sucesso;
     return true;
+}
+
+void appRun(App* app){
+
+    while(app->aberta){
+        trataEventos(app);
+        SDL_SetRenderDrawColor(app->render, 20, 20, 20, 255);
+        SDL_RenderClear(app->render);
+        SDL_RenderPresent(app->render);
+    }
+    sucesso;
 }
 
 void appDestroy(App* app){
@@ -30,4 +45,11 @@ void appDestroy(App* app){
     SDL_DestroyRenderer(app->render);
     SDL_Quit();
     sucesso;
+}
+
+void trataEventos(App* app){
+    SDL_Event evento;
+    while(SDL_PollEvent(&evento)){
+        if(evento.type == SDL_EVENT_QUIT) app->aberta = false;
+    }
 }

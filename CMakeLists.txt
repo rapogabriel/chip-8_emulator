@@ -12,6 +12,7 @@ set(EXECUTAVEL chip8)
 set(FONTES
     main
     core
+    render
 )
 
 # Define que a versão do C++ é obrigatória e desativa extensões específicas do compilador

@@ -7,8 +7,9 @@
 typedef struct App {
     SDL_Window* window;
     SDL_Renderer* render;
-    bool fechada;
+    bool aberta;
 } App;
 
 bool appInit(App*, const char*, int, int);
+void appRun(App*);
 void appDestroy(App*);
