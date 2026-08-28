@@ -2,6 +2,8 @@
 
 #include "core.h"
 #include "SDL3/SDL_events.h"
+#include "SDL3/SDL_mouse.h"
+#include "SDL3/SDL_rect.h"
 #include "log.h"
 #include "SDL3/SDL_error.h"
 #include "SDL3/SDL_init.h"
@@ -48,7 +50,30 @@ void appDestroy(App* app){
 
 void trataEventos(App* app){
     SDL_Event evento;
+    float mx, my;
+    SDL_MouseButtonFlags mflags = SDL_GetMouseState(&mx, &my);
+    SDL_FPoint mousePos = {mx, my};
+    bool segurandoClick = (mflags & SDL_BUTTON_LMASK) != 0;
+    #define X(nomeVar, x, y, w, h, nome_arquivo) \
+    app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area); \
+    app->nomeVar.click = (app->nomeVar.hover && segurandoClick);
+    BOTOES(X)
+    #undef X
     while(SDL_PollEvent(&evento)){
         if(evento.type == SDL_EVENT_QUIT) app->aberta = false;
+        else if(evento.type == SDL_EVENT_MOUSE_BUTTON_DOWN){
+            if(evento.button.button == SDL_BUTTON_LEFT){
+                SDL_FPoint clickPos = {evento.button.x, evento.button.y};
+                #define X(nomeVar, x, y, w, h, nome_arquivo) \
+                if(SDL_PointInRectFloat(&clickPos, &app->nomeVar.area)){ \
+                    app->nomeVar.click = true; \
+                    LOG("Evento click"); \
+                    goto FimClick; \
+                }
+                BOTOES(X)
+                #undef X
+                FimClick:
+            }
+        }
     }
 }

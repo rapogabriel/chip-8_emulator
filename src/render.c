@@ -8,10 +8,6 @@
 
 static const SDL_FRect bar = { 0.0f, 0.0f, 800.0f, 36.0f };
 
-// (x, y, w, h, nome_arquivo)
-#define BOTOES(X) \
-X(close, 800.0f - 16.0f - 10.0f, (36.0f - 16.0f) / 2.0f, 16.0f, 16.0f, "close_icon.png")
-
 #define X(nomeVar, x, y, w, h, arq) \
 { \
 surface_icone = SDL_LoadPNG("../imgs/"arq); \
@@ -45,7 +41,6 @@ if (app->nomeVar.click) { \
     SDL_SetTextureColorMod(app->nomeVar.imagem, 255, 255, 255); \
 } \
 SDL_RenderTexture(app->render, app->nomeVar.imagem, NULL, &app->nomeVar.area); \
-app->nomeVar.click = app->nomeVar.hover = false; \
 }
 bool drawRender(App* app){
     SDL_SetRenderDrawColor(app->render, 20, 20, 20, 255);
