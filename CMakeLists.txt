@@ -13,6 +13,7 @@ set(FONTES
     main
     core
     render
+    btn_actions
 )
 
 # Define que a versão do C++ é obrigatória e desativa extensões específicas do compilador

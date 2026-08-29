@@ -78,7 +78,15 @@ docker build -t chip8-emu .
 
 ## 🗺️ Próximos Passos (Roadmap)
 
-- [ ] **Interface Gráfica Base (SDL3):** O desenvolvimento da UI será a prioridade inicial, antes da implementação da lógica do emulador em si. Isso incluirá a janela base, botões para carregar a ROM e opções para fechar o programa, criando uma carcaça funcional para o emulador.
+- [ ] **Interface Gráfica Base (SDL3):**.
+    - [x] Janela e render
+    - [x] Barra do topo
+    - [x] Lógica para os botões superiores
+        - [x] Fechar
+        - [ ] Maximizar / Restaurar
+        - [ ] Minimizar
+        - [ ] Menu de arquivo
+    - [ ] Nome do programa
 - [ ] Implementação da CPU e do ciclo de *Fetch-Decode-Execute*.
 - [ ] Mapeamento da memória e configuração dos registradores.
 - [ ] Integração do backend do emulador com a interface SDL3 para renderização do display do CHIP-8 e captura de inputs.

@@ -10,6 +10,7 @@
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_video.h"
 #include "render.h"
+#include "btn_actions.h"
 #include <stdio.h>
 
 void trataEventos(App*);
@@ -51,12 +52,10 @@ void appDestroy(App* app){
 void trataEventos(App* app){
     SDL_Event evento;
     float mx, my;
-    SDL_MouseButtonFlags mflags = SDL_GetMouseState(&mx, &my);
+    SDL_GetMouseState(&mx, &my);
     SDL_FPoint mousePos = {mx, my};
-    bool segurandoClick = (mflags & SDL_BUTTON_LMASK) != 0;
     #define X(nomeVar, x, y, w, h, nome_arquivo) \
-    app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area); \
-    app->nomeVar.click = (app->nomeVar.hover && segurandoClick);
+    app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area);
     BOTOES(X)
     #undef X
     while(SDL_PollEvent(&evento)){
@@ -67,7 +66,7 @@ void trataEventos(App* app){
                 #define X(nomeVar, x, y, w, h, nome_arquivo) \
                 if(SDL_PointInRectFloat(&clickPos, &app->nomeVar.area)){ \
                     app->nomeVar.click = true; \
-                    LOG("Evento click"); \
+                    act_##nomeVar(app); \
                     goto FimClick; \
                 }
                 BOTOES(X)

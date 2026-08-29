@@ -46,7 +46,7 @@ bool drawRender(App* app){
     SDL_SetRenderDrawColor(app->render, 20, 20, 20, 255);
     SDL_RenderClear(app->render);
     SDL_SetRenderDrawColor(app->render, 5, 5, 5, 255);
-    SDL_RenderRect(app->render, &bar);
+    SDL_RenderFillRect(app->render, &bar);
     BOTOES(X)
     SDL_RenderPresent(app->render);
     return true;
