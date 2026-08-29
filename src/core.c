@@ -52,11 +52,12 @@ void appDestroy(App* app){
 void trataEventos(App* app){
     SDL_Event evento;
     float mx, my;
-    SDL_GetMouseState(&mx, &my);
+    SDL_MouseButtonFlags mFlags = SDL_GetMouseState(&mx, &my);
     SDL_FPoint mousePos = {mx, my};
     #define X(nomeVar, x, y, w, h, nome_arquivo) \
-    app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area);
-    BOTOES(X)
+    app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area); \
+    app->nomeVar.click = app->nomeVar.hover && ((mFlags & SDL_BUTTON_LMASK) != 0);
+    #include "btns.inc"
     #undef X
     while(SDL_PollEvent(&evento)){
         if(evento.type == SDL_EVENT_QUIT) app->aberta = false;
@@ -69,7 +70,7 @@ void trataEventos(App* app){
                     act_##nomeVar(app); \
                     goto FimClick; \
                 }
-                BOTOES(X)
+                #include "btns.inc"
                 #undef X
                 FimClick:
             }

@@ -24,7 +24,7 @@ LOG("Botão %s carregado", arq); \
 
 bool initBtns(App* app){
     SDL_Surface* surface_icone;
-    BOTOES(X)
+    #include "btns.inc"
     sucesso;
     return true;
 }
@@ -47,7 +47,7 @@ bool drawRender(App* app){
     SDL_RenderClear(app->render);
     SDL_SetRenderDrawColor(app->render, 5, 5, 5, 255);
     SDL_RenderFillRect(app->render, &bar);
-    BOTOES(X)
+    #include "btns.inc"
     SDL_RenderPresent(app->render);
     return true;
 }
@@ -56,7 +56,7 @@ bool drawRender(App* app){
 #define X(nomeVar, x, y, w, h, arq) \
 SDL_DestroyTexture(app->nomeVar.imagem);
 void destroyBtns(App* app){
-    BOTOES(X)
+    #include "btns.inc"
     sucesso;
 }
 #undef X

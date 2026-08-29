@@ -11,12 +11,15 @@ typedef struct btn {
     bool click;
 } Btn;
 
+#define X(nomeVar, x, y, w, h, nome_arquivo) \
+Btn nomeVar;
 typedef struct App {
     SDL_Window* window;
     SDL_Renderer* render;
-    Btn close;
+    #include "btns.inc"
     bool aberta;
 } App;
+#undef X
 
 bool appInit(App*, const char*, int, int);
 void appRun(App*);

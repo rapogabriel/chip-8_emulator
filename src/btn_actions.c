@@ -7,3 +7,7 @@ void act_close(App* app){
     app->aberta = false;
     sucesso;
 }
+
+void act_maxres(App*){
+    sucesso;
+}

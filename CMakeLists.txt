@@ -38,7 +38,7 @@ FetchContent_MakeAvailable(SDL3)
 
 option(ENABLE_EMU_DEBUG "Ativa a flag DEBUG para logs" OFF)
 
-# Transforma um arquivo em FONTES para o padrão ${SRC_DIR}arquivo.cpp
+# Transforma um arquivo em FONTES para o padrão ${SRC_DIR}arquivo.c
 list(TRANSFORM FONTES PREPEND ${SRC_DIR})
 list(TRANSFORM FONTES APPEND .c)
 
@@ -57,14 +57,10 @@ target_compile_options(${EXECUTAVEL} PRIVATE
 target_link_libraries(${EXECUTAVEL} PRIVATE SDL3::SDL3)
 
 if(ENABLE_EMU_DEBUG)
-    # Equivalente a passar -DDEBUG (ativa o #ifdef DEBUG do seu log.h)
+    # #ifdef DEBUG
     target_compile_definitions(${EXECUTAVEL} PRIVATE DEBUG)
     
-    # Injeta as flags do Valgrind
-    target_compile_options(${EXECUTAVEL} PRIVATE -g -fno-omit-frame-pointer -O1 -fsanitize=address,undefined)
-    target_link_options(${EXECUTAVEL} PRIVATE -fsanitize=address,undefined)
-    
-    # Um aviso visual no terminal para você ter certeza que ativou
+    # Um aviso visual no terminal
     message(STATUS "MODO DEBUG ATIVADO: Logs ligados.")
 else()
     message(STATUS "MODO RELEASE: Compilação padrão (sem logs de debug).")
