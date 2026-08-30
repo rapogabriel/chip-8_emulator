@@ -6,7 +6,7 @@
 #include "core.h"
 #include "log.h"
 
-static const SDL_FRect bar = { 0.0f, 0.0f, 800.0f, 36.0f };
+static SDL_FRect bar = { 0.0f, 0.0f, 800.0f, 36.0f };
 
 #define X(nomeVar, x, y, w, h, arq) \
 { \
@@ -19,6 +19,7 @@ SDL_DestroySurface(surface_icone); \
 app->nomeVar.area = (SDL_FRect){x, y, w, h}; \
 app->nomeVar.click = false; \
 app->nomeVar.hover = false; \
+app->nomeVar.corte = (SDL_FRect) {0.0f, 0.0f, 16.0f, 16.0f}; \
 LOG("Botão %s carregado", arq); \
 }
 
@@ -40,7 +41,7 @@ if (app->nomeVar.click) { \
 } else { \
     SDL_SetTextureColorMod(app->nomeVar.imagem, 255, 255, 255); \
 } \
-SDL_RenderTexture(app->render, app->nomeVar.imagem, NULL, &app->nomeVar.area); \
+SDL_RenderTexture(app->render, app->nomeVar.imagem, &app->nomeVar.corte, &app->nomeVar.area); \
 }
 bool drawRender(App* app){
     SDL_SetRenderDrawColor(app->render, 20, 20, 20, 255);
@@ -48,15 +49,23 @@ bool drawRender(App* app){
     SDL_SetRenderDrawColor(app->render, 5, 5, 5, 255);
     SDL_RenderFillRect(app->render, &bar);
     #include "btns.inc"
+    #undef X
     SDL_RenderPresent(app->render);
     return true;
 }
-#undef X
 
 #define X(nomeVar, x, y, w, h, arq) \
 SDL_DestroyTexture(app->nomeVar.imagem);
 void destroyBtns(App* app){
     #include "btns.inc"
+    #undef X
     sucesso;
 }
-#undef X
+
+#define X(nomeVar, argx, y, argw, h, arq) \
+app->nomeVar.area = (SDL_FRect) { argx + (width - 800.0f), y, argw, h};
+void resizing(App* app, float width){
+    #include "btns.inc"
+    #undef X
+    bar.w = width;
+}

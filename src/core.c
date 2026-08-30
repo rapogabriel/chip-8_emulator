@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 void trataEventos(App*);
+SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window *, const SDL_Point *ponto, void *);
 
 bool appInit(App* app, const char* titulo, int largura, int altura){
     if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -21,13 +22,17 @@ bool appInit(App* app, const char* titulo, int largura, int altura){
         return false;
     }
     if(!SDL_CreateWindowAndRenderer(titulo, largura, altura,
-        SDL_WINDOW_BORDERLESS, &app->window, &app->render)){
+        SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE, &app->window, &app->render)){
         printf("Falha na SDL_CreateWindowAndRenderer: %s", SDL_GetError());
         SDL_Quit();
         return false;
     }
     if(!initBtns(app)) return false;
     app->aberta = true;
+    app->maximizado = false;
+    SDL_SetWindowMaximumSize(app->window, 1920, 1080);
+    SDL_SetWindowMinimumSize(app->window, 800, 600);
+    SDL_SetWindowHitTest(app->window, regras_da_janela, nullptr);
     sucesso;
     return true;
 }
@@ -74,6 +79,20 @@ void trataEventos(App* app){
                 #undef X
                 FimClick:
             }
+        } else if(evento.type == SDL_EVENT_WINDOW_RESIZED){
+            resizing(app, (float) evento.window.data1);
         }
     }
+}
+
+SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window *, const SDL_Point *ponto, void *) {
+    
+    if (ponto->y < 40) {
+        // Tenho que configurar as areas dos botões pra isso não ativar depois
+        if (ponto->x < 750) { 
+            return SDL_HITTEST_DRAGGABLE;
+        }
+    }
+    
+    return SDL_HITTEST_NORMAL;
 }

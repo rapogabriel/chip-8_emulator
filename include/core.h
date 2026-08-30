@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SDL3/SDL_rect.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_video.h"
 #include <SDL3/SDL.h>
@@ -7,6 +8,7 @@
 typedef struct btn {
     SDL_FRect area;
     SDL_Texture* imagem;
+    SDL_FRect corte;
     bool hover;
     bool click;
 } Btn;
@@ -18,6 +20,7 @@ typedef struct App {
     SDL_Renderer* render;
     #include "btns.inc"
     bool aberta;
+    bool maximizado;
 } App;
 #undef X
 

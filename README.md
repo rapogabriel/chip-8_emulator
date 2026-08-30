@@ -83,7 +83,7 @@ docker build -t chip8-emu .
     - [x] Barra do topo
     - [x] Lógica para os botões superiores
         - [x] Fechar
-        - [ ] Maximizar / Restaurar
+        - [x] Maximizar / Restaurar
         - [ ] Minimizar
         - [ ] Menu de arquivo
     - [ ] Nome do programa
