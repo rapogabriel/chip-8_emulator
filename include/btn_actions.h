@@ -3,3 +3,4 @@
 #include "core.h"
 void act_close(App*);
 void act_maxres(App*);
+void act_minimize(App*);

@@ -85,11 +85,30 @@ void trataEventos(App* app){
     }
 }
 
-SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window *, const SDL_Point *ponto, void *) {
+SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window * window, const SDL_Point *ponto, void *) {
+
+    constexpr int borda = 5;
+
+    int w, h;
+    SDL_GetWindowSize(window, &w, &h);
+
+    const int wborda = w - borda;
+    const int hborda = h - borda;
+
+    if(ponto->x < borda && ponto->y < borda) return SDL_HITTEST_RESIZE_TOPLEFT;
+    if(ponto->x > wborda && ponto->y < borda) return SDL_HITTEST_RESIZE_TOPRIGHT;
+    if(ponto->x < borda && ponto->y > hborda) return SDL_HITTEST_RESIZE_BOTTOMLEFT;
+    if(ponto->x > wborda && ponto->y > hborda) return SDL_HITTEST_RESIZE_BOTTOMRIGHT;
+
+    if(ponto->x < borda) return SDL_HITTEST_RESIZE_LEFT;
+    if(ponto->x > wborda) return SDL_HITTEST_RESIZE_RIGHT;
+
+    if(ponto->y < borda) return SDL_HITTEST_RESIZE_TOP;
+    if(ponto->y > hborda) return SDL_HITTEST_RESIZE_BOTTOM;
     
     if (ponto->y < 40) {
         // Tenho que configurar as areas dos botões pra isso não ativar depois
-        if (ponto->x < 750) { 
+        if (ponto->x < 722) { 
             return SDL_HITTEST_DRAGGABLE;
         }
     }

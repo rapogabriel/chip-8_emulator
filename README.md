@@ -84,7 +84,7 @@ docker build -t chip8-emu .
     - [x] Lógica para os botões superiores
         - [x] Fechar
         - [x] Maximizar / Restaurar
-        - [ ] Minimizar
+        - [x] Minimizar
         - [ ] Menu de arquivo
     - [ ] Nome do programa
 - [ ] Implementação da CPU e do ciclo de *Fetch-Decode-Execute*.

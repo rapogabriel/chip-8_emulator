@@ -20,3 +20,8 @@ void act_maxres(App* app){
     app->maximizado = !app->maximizado;
     sucesso;
 }
+
+void act_minimize(App* app){
+    SDL_MinimizeWindow(app->window);
+    sucesso;
+}
