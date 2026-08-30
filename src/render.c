@@ -26,10 +26,15 @@ LOG("Botão %s carregado", arq); \
 bool initBtns(App* app){
     SDL_Surface* surface_icone;
     #include "btns.inc"
+    #include "menus.inc"
+    #undef X
+    #define X(nomeVar, x, y, w, h, arq) \
+    app->nomeVar.corte = (SDL_FRect) {0.0f, 0.0f, w, h};
+    #include "menus.inc"
+    #undef X
     sucesso;
     return true;
 }
-#undef X
 
 
 #define X(nomeVar, x, y, w, h, arq) \
@@ -49,6 +54,7 @@ bool drawRender(App* app){
     SDL_SetRenderDrawColor(app->render, 5, 5, 5, 255);
     SDL_RenderFillRect(app->render, &bar);
     #include "btns.inc"
+    #include "menus.inc"
     #undef X
     SDL_RenderPresent(app->render);
     return true;
@@ -58,6 +64,7 @@ bool drawRender(App* app){
 SDL_DestroyTexture(app->nomeVar.imagem);
 void destroyBtns(App* app){
     #include "btns.inc"
+    #include "menus.inc"
     #undef X
     sucesso;
 }

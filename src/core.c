@@ -63,6 +63,7 @@ void trataEventos(App* app){
     app->nomeVar.hover = SDL_PointInRectFloat(&mousePos, &app->nomeVar.area); \
     app->nomeVar.click = app->nomeVar.hover && ((mFlags & SDL_BUTTON_LMASK) != 0);
     #include "btns.inc"
+    #include "menus.inc"
     #undef X
     while(SDL_PollEvent(&evento)){
         if(evento.type == SDL_EVENT_QUIT) app->aberta = false;
@@ -106,9 +107,9 @@ SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window * window, const SDL_Point 
     if(ponto->y < borda) return SDL_HITTEST_RESIZE_TOP;
     if(ponto->y > hborda) return SDL_HITTEST_RESIZE_BOTTOM;
     
-    if (ponto->y < 40) {
+    if (ponto->y < 36) {
         // Tenho que configurar as areas dos botões pra isso não ativar depois
-        if (ponto->x < 722) { 
+        if (ponto->x > 43 && ponto->x < 722) { 
             return SDL_HITTEST_DRAGGABLE;
         }
     }

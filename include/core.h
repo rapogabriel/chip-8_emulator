@@ -19,6 +19,7 @@ typedef struct App {
     SDL_Window* window;
     SDL_Renderer* render;
     #include "btns.inc"
+    #include "menus.inc"
     bool aberta;
     bool maximizado;
 } App;

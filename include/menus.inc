@@ -1,0 +1,1 @@
+X(menu_arquivo, 10.0f, ((36.0f - 16.0f) / 2.0f), 43.0f, 16.0f, "arquivo_icon.png")
