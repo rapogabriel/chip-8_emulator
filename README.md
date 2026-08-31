@@ -9,10 +9,17 @@ No momento, o projeto encontra-se em sua fase inicial de desenvolvimento. O obje
 ```text
 .
 ├── include/
-│   └── arg_parse.h       # Declarações e estruturas para o parser de argumentos da CLI
+│   ├── btns_actions.h    # Protótipos das ações de cada botão do menu superior
+│   ├── btns.inc          # Arquivo texto para metaprogramação para gerar os botões do lado direito do menu superior
+│   ├── core.h            # Gerenciador da janela e eventos
+│   ├── log.h             # Macro útil para gerar Logs
+│   ├── menus.inc         # Arquivo texto para metaprogramação dos botões do lado esquerdo
+│   └── render.h          # Gerenciador da renderização da janela
 ├── src/
-│   ├── arg_parse.c       # Implementação da lógica de tratamento da linha de comando
-│   └── main.c            # Ponto de entrada do emulador (atualmente Hello World)
+│   ├── btn_actions.c     # Implementação das ações dos botões do menu superior
+│   ├── core.c            # Implementação das funções principais da janela e do tratamento de eventos
+│   ├── main.c            # Ponto de entrada do emulador (atualmente apenas uma interface vazia)
+│   └── render.c          # Implementação do renderizador da janela
 ├── .dockerignore         # Regras de exclusão para o Docker
 ├── .gitignore            # Regras de exclusão para o repositório
 ├── CMakeLists.txt        # Configurações centrais de compilação
