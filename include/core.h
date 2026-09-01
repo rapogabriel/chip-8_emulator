@@ -25,6 +25,6 @@ typedef struct App {
 } App;
 #undef X
 
-bool appInit(App*, const char*, int, int);
+bool appInit(App*, const char*);
 void appRun(App*);
 void appDestroy(App*);

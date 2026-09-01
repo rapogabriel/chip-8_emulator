@@ -11,17 +11,18 @@
 #include "SDL3/SDL_video.h"
 #include "render.h"
 #include "btn_actions.h"
+#include "consts.h"
 #include <stdio.h>
 
 void trataEventos(App*);
 SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window *, const SDL_Point *ponto, void *);
 
-bool appInit(App* app, const char* titulo, int largura, int altura){
+bool appInit(App* app, const char* titulo){
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Falha do SDL_Init: %s", SDL_GetError());
         return false;
     }
-    if(!SDL_CreateWindowAndRenderer(titulo, largura, altura,
+    if(!SDL_CreateWindowAndRenderer(titulo, JANELA_WIDTH, JANELA_HEIGHT,
         SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE, &app->window, &app->render)){
         printf("Falha na SDL_CreateWindowAndRenderer: %s", SDL_GetError());
         SDL_Quit();
@@ -31,7 +32,7 @@ bool appInit(App* app, const char* titulo, int largura, int altura){
     app->aberta = true;
     app->maximizado = false;
     SDL_SetWindowMaximumSize(app->window, 1920, 1080);
-    SDL_SetWindowMinimumSize(app->window, 800, 600);
+    SDL_SetWindowMinimumSize(app->window, JANELA_WIDTH, JANELA_HEIGHT);
     SDL_SetWindowHitTest(app->window, regras_da_janela, nullptr);
     sucesso;
     return true;
@@ -109,7 +110,7 @@ SDL_HitTestResult SDLCALL regras_da_janela(SDL_Window * window, const SDL_Point 
     
     if (ponto->y < 36) {
         // Tenho que configurar as areas dos botões pra isso não ativar depois
-        if (ponto->x > 43 && ponto->x < 722) { 
+        if (ponto->x > 43 && ponto->x < (w - 78)) { 
             return SDL_HITTEST_DRAGGABLE;
         }
     }

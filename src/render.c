@@ -5,8 +5,9 @@
 #include "SDL3/SDL_render.h"
 #include "core.h"
 #include "log.h"
+#include "consts.h"
 
-static SDL_FRect bar = { 0.0f, 0.0f, 800.0f, 36.0f };
+static SDL_FRect bar = { 0.0f, 0.0f, (float) JANELA_WIDTH, 36.0f };
 
 #define X(nomeVar, x, y, w, h, arq) \
 { \
@@ -70,7 +71,7 @@ void destroyBtns(App* app){
 }
 
 #define X(nomeVar, argx, y, argw, h, arq) \
-app->nomeVar.area = (SDL_FRect) { argx + (width - 800.0f), y, argw, h};
+app->nomeVar.area = (SDL_FRect) { argx + (width - (float) JANELA_WIDTH), y, argw, h};
 void resizing(App* app, float width){
     #include "btns.inc"
     #undef X
