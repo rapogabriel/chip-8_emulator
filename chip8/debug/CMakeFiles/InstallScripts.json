@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/master/Documentos/c/chip8/debug/cmake_install.cmake",
+		"/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

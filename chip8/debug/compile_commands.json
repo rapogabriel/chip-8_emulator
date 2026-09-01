@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/master/Documentos/c/chip8/debug",
+  "command": "/usr/bin/clang -DDEBUG -I/home/master/Documentos/c/chip8/include -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/include-revision -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-src/include -std=gnu23 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Wsign-conversion -std=c23 -g -gdwarf-4 -o CMakeFiles/chip8.dir/src/main.c.o -c /home/master/Documentos/c/chip8/src/main.c",
+  "file": "/home/master/Documentos/c/chip8/src/main.c",
+  "output": "/home/master/Documentos/c/chip8/debug/CMakeFiles/chip8.dir/src/main.c.o"
+},
+{
+  "directory": "/home/master/Documentos/c/chip8/debug",
+  "command": "/usr/bin/clang -DDEBUG -I/home/master/Documentos/c/chip8/include -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/include-revision -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-src/include -std=gnu23 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Wsign-conversion -std=c23 -g -gdwarf-4 -o CMakeFiles/chip8.dir/src/chip8.c.o -c /home/master/Documentos/c/chip8/src/chip8.c",
+  "file": "/home/master/Documentos/c/chip8/src/chip8.c",
+  "output": "/home/master/Documentos/c/chip8/debug/CMakeFiles/chip8.dir/src/chip8.c.o"
+},
+{
+  "directory": "/home/master/Documentos/c/chip8/debug",
+  "command": "/usr/bin/clang -DDEBUG -I/home/master/Documentos/c/chip8/include -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/include-revision -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-src/include -std=gnu23 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Wsign-conversion -std=c23 -g -gdwarf-4 -o CMakeFiles/chip8.dir/src/argparser.c.o -c /home/master/Documentos/c/chip8/src/argparser.c",
+  "file": "/home/master/Documentos/c/chip8/src/argparser.c",
+  "output": "/home/master/Documentos/c/chip8/debug/CMakeFiles/chip8.dir/src/argparser.c.o"
+},
+{
+  "directory": "/home/master/Documentos/c/chip8/debug",
+  "command": "/usr/bin/clang -DDEBUG -I/home/master/Documentos/c/chip8/include -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/include-revision -I/home/master/Documentos/c/chip8/debug/_deps/sdl3-src/include -std=gnu23 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Wsign-conversion -std=c23 -g -gdwarf-4 -o CMakeFiles/chip8.dir/src/config.c.o -c /home/master/Documentos/c/chip8/src/config.c",
+  "file": "/home/master/Documentos/c/chip8/src/config.c",
+  "output": "/home/master/Documentos/c/chip8/debug/CMakeFiles/chip8.dir/src/config.c.o"
+}
+]

@@ -1,0 +1,7 @@
+/home/master/Documentos/c/chip8/debug/CMakeFiles/chip8.dir
+/home/master/Documentos/c/chip8/debug/CMakeFiles/edit_cache.dir
+/home/master/Documentos/c/chip8/debug/CMakeFiles/rebuild_cache.dir
+/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/CMakeFiles/SDL3-static.dir
+/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/CMakeFiles/SDL3_test.dir
+/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/CMakeFiles/edit_cache.dir
+/home/master/Documentos/c/chip8/debug/_deps/sdl3-build/CMakeFiles/rebuild_cache.dir

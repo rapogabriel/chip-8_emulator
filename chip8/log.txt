@@ -1,0 +1,4 @@
+[LOG] parse (linha 35): Elemento desconhecido no parser: --b
+[LOG] Chip8_new (linha 37): Chip alocado
+[LOG] main (linha 14): Número inválido de argumentos: 3
+[LOG] Chip8_delete (linha 51): Chip desalocado
